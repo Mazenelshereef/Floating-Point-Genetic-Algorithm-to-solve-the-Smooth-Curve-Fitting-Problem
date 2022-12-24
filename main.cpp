@@ -51,7 +51,7 @@ vector<float> mutation(vector<float> chromosome, int generation)
                 y = ux;
             r = rand() % (1 - 0 + 1) + 0;
             delta = y * (1 - powf(r, (1 - generation / (0.01))));
-            if (r1 > 0.5)
+            if (r1 < 0.5)
                 chromosome[i] = chromosome[i] - delta;
             else
                 chromosome[i] = chromosome[i] + delta;
@@ -61,22 +61,22 @@ vector<float> mutation(vector<float> chromosome, int generation)
 }
 pair<float, vector<float>> tournment(vector<pair<float, vector<float>>> pop, int k)
 {
-pair<float, vector<float>> bestfit = pop[1];
-set<int> cand;
-srand(static_cast<unsigned int>(time(nullptr)));
-while (cand.size() != k)
-{
-int randNum = rand() % (pop.size() - 0 + 1) + 0;
-cand.insert(randNum);
-}
-for (size_t i = 1; i < cand.size(); i++)
-{
-if (pop[i].first > bestfit.first)
-{
-bestfit = pop[i];
-}
-}
-return bestfit;
+    pair<float, vector<float>> bestfit = pop[1];
+    set<int> cand;
+    srand(static_cast<unsigned int>(time(nullptr)));
+    while (cand.size() != k)
+    {
+        int randNum = rand() % (pop.size() - 0 + 1) + 0;
+        cand.insert(randNum);
+    }
+    for (size_t i = 1; i < cand.size(); i++)
+    {
+        if (pop[i].first > bestfit.first)
+        {
+            bestfit = pop[i];
+        }
+    }
+    return bestfit;
 }
 
 ll numOfData, pynomialDegree, numItems;
